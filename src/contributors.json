@@ -1,14 +1,14 @@
 [
-    {
-        "name": "Steel (Maintainer)",
-        "github": "steel",
-        "role": "Project Creator",
-        "bio": "Built this devops wall to showcase contributors via CI/CD."
-    },
-    {
-        "name": "Himanshu",
-        "github": "cse-himanshu",
-        "role": "contributors",
-        "bio": "Contributing in this project"
-    }
+  {
+    "name": "Steel (Maintainer)",
+    "github": "iamSt3el",
+    "role": "Project Creator",
+    "bio": "Built this DevOps Wall to showcase CI/CD pipelines in action."
+  },
+  {
+    "name": "Himanshu",
+    "github": "cse-himanshu",
+    "role": "Contributor",
+    "bio": "Contributing to this project."
+  }
 ]

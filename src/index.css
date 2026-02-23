@@ -5,18 +5,25 @@
 }
 
 :root {
-  --bg: #080808;
-  --surface: #111111;
-  --surface-2: #1a1a1a;
-  --border: #222222;
-  --border-hover: #f5c400;
-  --text-primary: #ffffff;
-  --text-muted: #888888;
-  --yellow: #f5c400;
-  --yellow-dim: #c49b00;
-  --yellow-glow: rgba(245, 196, 0, 0.12);
-  --yellow-glow-strong: rgba(245, 196, 0, 0.22);
+  --bg:              #060606;
+  --surface:         #0f0f0f;
+  --surface-2:       #161616;
+  --surface-3:       #1e1e1e;
+  --border:          #242424;
+  --border-strong:   #333333;
+  --text-primary:    #ffffff;
+  --text-secondary:  #cccccc;
+  --text-muted:      #666666;
+  --yellow:          #f5c400;
+  --yellow-light:    #ffd84d;
+  --yellow-dim:      #a88500;
+  --yellow-glow:     rgba(245, 196, 0, 0.08);
+  --yellow-glow-md:  rgba(245, 196, 0, 0.16);
+  --yellow-glow-lg:  rgba(245, 196, 0, 0.28);
   --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
 }
 
 body {
@@ -38,10 +45,7 @@ a {
   color: var(--yellow);
   text-decoration: none;
 }
-
-a:hover {
-  color: #fff;
-}
+a:hover { color: #fff; }
 
 ::selection {
   background: var(--yellow);

@@ -2,74 +2,111 @@ import contributors from './contributors.json'
 import ContributorCard from './ContributorCard'
 import './App.css'
 
-const PIPELINE_STEPS = [
-  'Fork Repo',
-  'Edit JSON',
-  'Open PR',
-  'CI Validates',
-  'Maintainer Merges',
-  'Live on Wall',
+const HOW_STEPS = [
+  {
+    title: 'Fork the repository',
+    desc: 'Hit Fork on GitHub to get your own copy of this repo.',
+  },
+  {
+    title: 'Add your entry',
+    desc: <>Open <code>src/contributors.json</code> and append your object — only <code>"name"</code> is required.</>,
+  },
+  {
+    title: 'Open a Pull Request',
+    desc: 'Push your branch and open a PR against main. GitHub Actions will validate your JSON automatically.',
+  },
+  {
+    title: 'Get merged — go live',
+    desc: 'Once your PR passes CI and the maintainer merges it, your card appears here instantly.',
+  },
 ]
 
 export default function App() {
   return (
     <div className="app">
+
+      {/* ── Header ── */}
       <header className="header">
-        <span className="header-logo">⬛</span>
-        <span className="header-title">DevOps<span>Wall</span></span>
-        <span className="header-badge">LIVE</span>
+        <div className="header-wordmark">
+          <span className="bracket">[</span>
+          <span className="text">DevOps Wall</span>
+          <span className="bracket">]</span>
+        </div>
+        <nav className="header-nav">
+          <a href="https://github.com/cse-himanshu/devops-wall" target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+          <a href="https://github.com/cse-himanshu/devops-wall/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">
+            Contribute
+          </a>
+        </nav>
+        <div className="live-pill" style={{ marginLeft: 'auto' }}>
+          <span className="live-dot" />
+          LIVE
+        </div>
       </header>
 
+      {/* ── Hero ── */}
       <section className="hero">
-        <span className="hero-eyebrow">CI/CD in action</span>
-        <h1>The <em>Contributor</em> Wall</h1>
-        <p>
-          Every card below was added via a Pull Request.
-          Fork the repo, drop your name in the JSON, and watch the pipeline do the rest.
-        </p>
-        <div className="hero-stats">
-          <div className="stat">
-            <span className="stat-value">{contributors.length}</span>
-            <span className="stat-label">Contributors</span>
+        <div className="hero-inner">
+          <div className="hero-tag">
+            <span className="hero-tag-dot" />
+            CI / CD in action
           </div>
-          <div className="stat">
-            <span className="stat-value">PR</span>
-            <span className="stat-label">Driven</span>
-          </div>
-          <div className="stat">
-            <span className="stat-value">CI</span>
-            <span className="stat-label">Validated</span>
+          <h1>
+            <span className="line-muted">open-source</span>
+            The <span className="highlight">Contributor</span> Wall
+          </h1>
+          <p className="hero-desc">
+            Every card on this page was merged via a Pull Request.
+            Fork the repo, add your name to a JSON file, and watch the pipeline put you on the wall.
+          </p>
+          <div className="hero-stats">
+            <div className="stat">
+              <span className="stat-value">{contributors.length}</span>
+              <span className="stat-label">Contributors</span>
+            </div>
+            <div className="stat">
+              <span className="stat-value">PR</span>
+              <span className="stat-label">Driven</span>
+            </div>
+            <div className="stat">
+              <span className="stat-value">CI</span>
+              <span className="stat-label">Validated</span>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* ── Main content ── */}
       <main className="main">
-        <div className="contribute-banner">
-          <span className="icon">⚡</span>
-          <div>
-            <h3>Want to appear here?</h3>
-            <p>
-              Fork this repo → open <code>src/contributors.json</code> → add your entry → open a Pull Request.
-              GitHub Actions validates your JSON automatically. Once merged, your card is live instantly.
-            </p>
+
+        {/* How it works */}
+        <div className="how-it-works">
+          <div className="how-header">
+            <span>$</span> how_to_contribute.sh
+          </div>
+          <div className="how-body">
+            <div className="how-steps">
+              {HOW_STEPS.map((s, i) => (
+                <div className="how-step" key={i}>
+                  <div className="step-badge">{i + 1}</div>
+                  <div className="step-info">
+                    <strong>{s.title}</strong>
+                    <span>{s.desc}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="pipeline-section">
-          <div className="pipeline-label">// pipeline</div>
-          <div className="pipeline-strip">
-            {PIPELINE_STEPS.map((step, i) => (
-              <div className="pipeline-step" key={step}>
-                <span className="step-num">{i + 1}</span>
-                {step}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="grid-header">
-          <h2>contributors — {contributors.length}</h2>
-          <div className="grid-header-line" />
+        {/* Grid */}
+        <div className="section-header">
+          <span className="section-title">
+            contributors &nbsp;<em>— {contributors.length}</em>
+          </span>
+          <div className="section-line" />
         </div>
 
         <div className="contributors-grid">
@@ -79,19 +116,32 @@ export default function App() {
             </div>
           ) : (
             contributors.map((c, i) => (
-              <ContributorCard key={c.github ?? c.name ?? i} contributor={c} />
+              <ContributorCard key={c.github ?? c.name ?? i} contributor={c} index={i} />
             ))
           )}
         </div>
+
       </main>
 
+      {/* ── Footer ── */}
       <footer className="footer">
-        <p>
-          devops-wall &nbsp;·&nbsp; powered by{' '}
-          <a href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">Vite</a>
-          {' '}+ React &nbsp;·&nbsp; data in <code>src/contributors.json</code>
-        </p>
+        <div className="footer-inner">
+          <div className="footer-left">
+            <span className="footer-brand">
+              DevOps<span>Wall</span>
+            </span>
+            <span className="footer-sub">
+              data lives in <code>src/contributors.json</code>
+            </span>
+          </div>
+          <div className="footer-right">
+            built with{' '}
+            <a href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">Vite</a>
+            {' '}+ React
+          </div>
+        </div>
       </footer>
+
     </div>
   )
 }
