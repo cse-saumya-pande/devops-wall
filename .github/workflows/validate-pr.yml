@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "src/contributors.json"
+      - "scripts/validate-contributors.mjs"
 
 jobs:
   validate:
@@ -20,11 +21,11 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Run JSON validator
-        run: node scripts/validate-contributors.mjs
-
       - name: Install dependencies
         run: npm ci
+
+      - name: Run JSON validator
+        run: node scripts/validate-contributors.mjs
 
       - name: Build app (smoke test)
         run: npm run build
